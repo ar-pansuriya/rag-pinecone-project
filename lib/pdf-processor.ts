@@ -1,4 +1,5 @@
 import pdfParse from "pdf-parse";
+import { extractText  } from "unpdf";
 
 
 // export interface ProcessedPdf {
@@ -19,23 +20,22 @@ export interface TextChunk {
 
 export async function extractTextFromPdf(file: File): Promise<string> {
   try {
-    const arrayBuffer = await file.arrayBuffer()
-    const uint8Array = new Uint8Array(arrayBuffer)
-    const buffer = Buffer.from(uint8Array)
+    const arrayBuffer = await file.arrayBuffer();
+    const uint8Array = new Uint8Array(arrayBuffer);
 
-    // Import pdf-parse dynamically to avoid SSR issues
-    const pdfParse = (await import("pdf-parse")).default
-    const data = await pdfParse(buffer)
+    const { text } = await extractText(uint8Array, {
+      mergePages: true
+    });
 
-    // Clean text (remove extra spaces, newlines)
-    const text = data.text.replace(/\s+/g, " ").trim();
-
-    return text
+    return typeof text === "string"
+      ? text
+      : (text as string[]).join("\n");
   } catch (error) {
-    console.error("Error extracting text from PDF:", error)
-    throw new Error("Failed to extract text from PDF")
+    console.error("Error extracting text from PDF:", error);
+    throw new Error("Failed to extract text from PDF");
   }
 }
+
 
 export function chunkText(text: string, maxTokens = 100): string[] {
   // Simple chunking by sentences and approximate token count
