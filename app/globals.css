@@ -1,0 +1,256 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Updated color tokens to use user-specified green color scheme */
+  --background: #eeeeee;
+  /* Light gray background */
+  --foreground: #000000;
+  /* Black text */
+  --card: #ffffff;
+  /* White cards */
+  --card-foreground: #000000;
+  /* Black text on cards */
+  --popover: #ffffff;
+  /* White popovers */
+  --popover-foreground: #000000;
+  /* Black text on popovers */
+  --primary: #08cb00;
+  /* Bright green primary */
+  --primary-foreground: #ffffff;
+  /* White text on green */
+  --secondary: #253900;
+  /* Dark green secondary */
+  --secondary-foreground: #ffffff;
+  /* White text on dark green */
+  --muted: #eeeeee;
+  /* Light gray muted */
+  --muted-foreground: #253900;
+  /* Dark green muted text */
+  --accent: #08cb00;
+  /* Bright green accent */
+  --accent-foreground: #ffffff;
+  /* White text on accent */
+  --destructive: #ff4c4c;
+  /* Red for errors */
+  --destructive-foreground: #ffffff;
+  /* White text on red */
+  --border: #253900;
+  /* Dark green borders */
+  --input: #ffffff;
+  /* White input backgrounds */
+  --ring: #08cb00;
+  /* Bright green focus rings */
+  --chart-1: #08cb00;
+  --chart-2: #253900;
+  --chart-3: #000000;
+  --chart-4: #eeeeee;
+  --chart-5: #08cb00;
+  --radius: 0.75rem;
+  /* Increased radius for modern PWA look */
+  --sidebar: #ffffff;
+  /* White sidebar */
+  --sidebar-foreground: #000000;
+  /* Black sidebar text */
+  --sidebar-primary: #08cb00;
+  /* Green sidebar elements */
+  --sidebar-primary-foreground: #ffffff;
+  /* White text */
+  --sidebar-accent: #253900;
+  /* Dark green sidebar accent */
+  --sidebar-accent-foreground: #ffffff;
+  /* White accent text */
+  --sidebar-border: #253900;
+  /* Dark green sidebar borders */
+  --sidebar-ring: #08cb00;
+  /* Green focus rings */
+}
+
+.dark {
+  /* Updated dark mode colors to maintain green theme */
+  --background: #000000;
+  /* Black background */
+  --foreground: #eeeeee;
+  /* Light gray text */
+  --card: #253900;
+  /* Dark green cards */
+  --card-foreground: #eeeeee;
+  /* Light gray text on cards */
+  --popover: #253900;
+  /* Dark green popovers */
+  --popover-foreground: #eeeeee;
+  /* Light gray text on popovers */
+  --primary: #08cb00;
+  /* Bright green primary */
+  --primary-foreground: #000000;
+  /* Black text on green */
+  --secondary: #eeeeee;
+  /* Light gray secondary */
+  --secondary-foreground: #000000;
+  /* Black text on light gray */
+  --muted: #253900;
+  /* Dark green muted */
+  --muted-foreground: #eeeeee;
+  /* Light gray muted text */
+  --accent: #08cb00;
+  /* Bright green accent */
+  --accent-foreground: #000000;
+  /* Black text on accent */
+  --destructive: #ff4c4c;
+  /* Red for errors */
+  --destructive-foreground: #ffffff;
+  /* White text on red */
+  --border: #08cb00;
+  /* Green borders */
+  --input: #253900;
+  /* Dark green input backgrounds */
+  --ring: #08cb00;
+  /* Green focus rings */
+  --chart-1: #08cb00;
+  --chart-2: #eeeeee;
+  --chart-3: #253900;
+  --chart-4: #000000;
+  --chart-5: #08cb00;
+  --sidebar: #253900;
+  /* Dark green sidebar */
+  --sidebar-foreground: #eeeeee;
+  /* Light gray sidebar text */
+  --sidebar-primary: #08cb00;
+  /* Green sidebar elements */
+  --sidebar-primary-foreground: #000000;
+  /* Black text */
+  --sidebar-accent: #eeeeee;
+  /* Light gray sidebar accent */
+  --sidebar-accent-foreground: #000000;
+  /* Black accent text */
+  --sidebar-border: #08cb00;
+  /* Green sidebar borders */
+  --sidebar-ring: #08cb00;
+  /* Green focus rings */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    /* Added PWA-friendly mobile optimizations */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Added PWA-friendly mobile styles */
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  ::selection {
+    background: #07cb0082;
+    color: black;
+    text-shadow: none;
+  }
+
+  ::-moz-selection {
+    background: #07cb0082;
+    color: black;
+    text-shadow: none;
+  }
+
+
+  /* Mobile-first responsive utilities */
+  .mobile-safe-area {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+
+  /* PWA-friendly scrolling */
+  .scroll-smooth {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+
+.my-class {
+  overflow: auto;
+  /* or scroll */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+}
+
+.my-class::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari, Opera */
+}
+
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.9; }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 2s ease-in-out infinite;
+}
+
+
+@keyframes bounce-delay {
+  0%, 80%, 100% { transform: scale(0); }
+  40% { transform: scale(1); }
+}
+
+.animate-bounce-delay {
+  animation: bounce-delay 1.2s infinite;
+}
+
+.animation-delay-150 { animation-delay: 0.15s; }
+.animation-delay-300 { animation-delay: 0.3s; }
