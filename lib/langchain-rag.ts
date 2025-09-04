@@ -61,17 +61,19 @@ export async function performRAGQuery(
     const vectorStore = await createVectorStore(namespace);
     const retriever = vectorStore.asRetriever({ k: topK });
 
-    const promptTemplate = ChatPromptTemplate.fromTemplate(`
-You are a helpful assistant that answers questions based on the provided context from PDF documents, if available.
+const promptTemplate = ChatPromptTemplate.fromTemplate(`
+You answer questions using the context below when it helps. If the context is missing something, fill the gaps with your own knowledge so the reply feels complete.
 
-Context from PDFs:
+Context:
 {context}
 
 Question: {input}
 
-Instructions:
-- Answer concisely and accurately.
-- If the context does not contain enough information, leave the answer empty; do not write filler text.
+Guidelines:
+- Use the context if it adds value, but don’t sound restricted by it.
+- If the context is empty or irrelevant, just answer normally.
+- Blend sources so the response reads like natural human reasoning, not like separate parts.
+- Keep the answer clear, concise, and conversational.
 
 Answer:
 `);
