@@ -252,5 +252,48 @@
   animation: bounce-delay 1.2s infinite;
 }
 
-.animation-delay-150 { animation-delay: 0.15s; }
 .animation-delay-300 { animation-delay: 0.3s; }
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.animate-\[shimmer_2s_infinite\] {
+  animation: shimmer 2s infinite;
+}
+
+@keyframes brand-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.animate-\[brand_shimmer_2s_infinite\] {
+  background: linear-gradient(90deg, 
+    #ffecd2 0%, 
+    #d1f5d3 25%, 
+    #c2e9fb 50%, 
+    #d1f5d3 75%, 
+    #ffecd2 100%
+  );
+  background-size: 200% 100%;
+  animation: brand-shimmer 2s infinite linear;
+}
+
+/* Gemini-style shimmer loading bars */
+@keyframes gemini-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.gemini-shimmer-original {
+  background: linear-gradient(90deg, 
+    #ffecd2 0%, 
+    #d1f5d3 25%, 
+    #c2e9fb 50%, 
+    #d1f5d3 75%, 
+    #ffecd2 100%
+  );
+  background-size: 200% 100%;
+  animation: brand-shimmer 2s infinite linear;
+}
